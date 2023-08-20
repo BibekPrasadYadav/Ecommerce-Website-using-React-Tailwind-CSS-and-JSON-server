@@ -2,7 +2,7 @@ import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "./cartSlice";
 
@@ -46,13 +46,15 @@ export default function () {
     dispatch(updateCartAsync({...item,quantity:+e.target.value}))
   }
 
-  const deleteItem=(e,item)=>{
+  const deleteItem=(e,id)=>{
     
-    dispatch(deleteItemFromCartAsync(item.id))
+    dispatch(deleteItemFromCartAsync(id))
   }
   
   return (
+    
     <>
+    {!items.length && <Navigate to="/" replace={true}></Navigate>}
       <div className="w-[80%] mx-auto mt-8 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900">
           Cart
@@ -90,7 +92,7 @@ export default function () {
                         >
                           Qty
                         </label>
-                        <select onChange={(e)=>handleQuantity(e,item)}>
+                        <select onChange={(e)=>handleQuantity(e,item)} value={item.quantity}>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -101,7 +103,7 @@ export default function () {
 
                       <div className="flex">
                         <button
-                        onClick={(e)=>deleteItem(e,item)}
+                        onClick={(e)=>deleteItem(e,item.id)}
                           type="button"
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >

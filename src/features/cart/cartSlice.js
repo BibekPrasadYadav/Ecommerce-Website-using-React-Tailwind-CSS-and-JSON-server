@@ -62,7 +62,7 @@ export const addToCartSlice = createSlice({
       })
       .addCase(updateCartAsync.fulfilled,(state,action)=>{
         state.status='idle';
-        const index=state.items.findIndex(item=>item.id===action.payload)
+        const index=state.items.findIndex(item=>item.id===action.payload.id)
         state.items[index]=action.payload;
       })
       .addCase(deleteItemFromCartAsync.pending,(state)=>{
@@ -70,7 +70,7 @@ export const addToCartSlice = createSlice({
       })
       .addCase(deleteItemFromCartAsync.fulfilled,(state,action)=>{
         state.status='idle';
-        const index=state.items.findIndex(item=>item.id===action.payload)
+        const index=state.items.findIndex(item=>item.id===action.payload.id)
         state.items.splice(index,1);
       })
   },

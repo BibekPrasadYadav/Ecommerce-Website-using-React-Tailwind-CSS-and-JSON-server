@@ -60,7 +60,7 @@ function App() {
     if(user){
     dispatch(fetchItemsByUserIdAsync(user.id))
     }
-},[dispatch,user.id]);
+},[dispatch,user]);
   return (
     <>
       <RouterProvider router={router} />
