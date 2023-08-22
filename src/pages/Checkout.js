@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
 import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
+import { createOrderAsync, selectCurrentOrder, selectCurrentOrderStatus } from "../features/order/orderSlice";
 const products = [
   {
     id: 1,
@@ -39,6 +39,7 @@ export default function Checkout() {
   const [open, setOpen] = useState(true);
   const items=useSelector(selectItems)
   const user=useSelector(selectLoggedInUser)
+  const currentOrder=useSelector(selectCurrentOrder)
   const dispatch=useDispatch()
 
   const totalAmount=items.reduce((amount,item)=>item.price*item.quantity+amount,0)
@@ -67,12 +68,18 @@ export default function Checkout() {
   }
 
   const handleOrder=()=>{
-    const order={items,totalAmount,totalItems,user,paymentMethod,selectedAddress}
+    if(selectedAddress && paymentMethod){
+    const order={items,totalAmount,totalItems,user,paymentMethod,selectedAddress,status:'pending'}
     dispatch(createOrderAsync(order))
+    }else{
+      alert("Enter Address and Payment method");
+    }
   }
   return (
     <>
+    
     {!items.length && <Navigate to="/"></Navigate>}
+    {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`}></Navigate>}
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
         <div className="lg:col-span-3">

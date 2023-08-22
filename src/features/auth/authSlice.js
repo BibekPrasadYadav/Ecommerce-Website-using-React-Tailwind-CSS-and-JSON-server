@@ -33,7 +33,7 @@ export const updateUserAsync = createAsyncThunk(
 );
 
 export const userSlice = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -69,7 +69,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const selectLoggedInUser = (state) => state.user.loggedInUser;
-export const selectError = (state) => state.user.error;
+export const selectLoggedInUser = (state) => state.auth.loggedInUser;
+export const selectError = (state) => state.auth.error;
 
 export default userSlice.reducer;
