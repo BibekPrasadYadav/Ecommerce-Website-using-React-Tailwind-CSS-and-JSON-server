@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from '../../cart/cartSlice'
 import { selectLoggedInUser } from '../../auth/authSlice';
-import { fetchLoggedInUserOrderAsync, selectUserOrder } from '../userSlice';
+import { fetchLoggedInUserOrderAsync, selectUserInfo, selectUserOrder } from '../userSlice';
 
 
 export default function UserOrder() {
   const [open, setOpen] = useState(true);
-  const users=useSelector(selectLoggedInUser)
+  const users=useSelector(selectUserInfo)
   const orders=useSelector(selectUserOrder)
   const dispatch=useDispatch();
   const [selectedAddress,setSelectedAddress]=useState(null);
@@ -24,11 +24,11 @@ export default function UserOrder() {
   
     
   return (
-    <>
+    <div>
     {orders.map((order)=>(
     
       
-       
+       <div>
       <div className="w-[80%] mx-auto p-10 mt-8 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900">
           Order #{order.id}
@@ -129,7 +129,8 @@ export default function UserOrder() {
          
         </div>
       </div>
+      </div>
     ))}
-    </>
+    </div>
   );
 }

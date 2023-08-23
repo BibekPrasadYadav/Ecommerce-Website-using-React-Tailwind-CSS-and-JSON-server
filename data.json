@@ -1054,15 +1054,44 @@
       "addresses": [
         {
           "name": "Bibek Prasad Yadav",
-          "email": "test@gmail.com",
-          "phone": "07022487804",
+          "email": "bibek@gmail.com",
+          "phone": "7022487804",
+          "street": "Mallathalli",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": "5600"
+        },
+        {
+          "name": "Rohit Prasad Yadav",
+          "email": "rohit@gmail.com",
+          "phone": "7124875484",
+          "street": "12th Road",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": "787847"
+        }
+      ],
+      "id": 1,
+      "address": [
+        {
+          "name": "Bibek Prasad Yadav",
+          "email": "bibek@gmail.com",
+          "phone": "7022487804",
+          "street": "Mallathalli",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "pincode": "5600"
+        },
+        {
+          "name": "Rohit Prasad Yadav",
+          "email": "rohit@gmail.com",
+          "phone": "5474641456",
           "street": "Mallathalli",
           "city": "banglore",
           "state": "Karnataka",
           "pincode": "560056"
         }
-      ],
-      "id": 1
+      ]
     },
     {
       "email": "demo@gmail.com",
@@ -1073,20 +1102,20 @@
   ],
   "cart": [
     {
-      "title": "iPhone X",
-      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
-      "rating": 4.44,
-      "stock": 34,
+      "title": "MacBook Pro",
+      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+      "price": 1749,
+      "discountPercentage": 11.02,
+      "rating": 4.57,
+      "stock": 83,
       "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
       "images": [
-        "https://i.dummyjson.com/data/products/2/1.jpg",
-        "https://i.dummyjson.com/data/products/2/2.jpg",
-        "https://i.dummyjson.com/data/products/2/3.jpg",
-        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+        "https://i.dummyjson.com/data/products/6/1.png",
+        "https://i.dummyjson.com/data/products/6/2.jpg",
+        "https://i.dummyjson.com/data/products/6/3.png",
+        "https://i.dummyjson.com/data/products/6/4.jpg"
       ],
       "quantity": 1,
       "user": 1,
@@ -1370,6 +1399,60 @@
       },
       "status": "pending",
       "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 899,
+      "totalItems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Test1234",
+        "addresses": [
+          {
+            "name": "Bibek Prasad Yadav",
+            "email": "test@gmail.com",
+            "phone": "07022487804",
+            "street": "Mallathalli",
+            "city": "banglore",
+            "state": "Karnataka",
+            "pincode": "560056"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Bibek Prasad Yadav",
+        "email": "test@gmail.com",
+        "phone": "07022487804",
+        "street": "Mallathalli",
+        "city": "banglore",
+        "state": "Karnataka",
+        "pincode": "560056"
+      },
+      "status": "pending",
+      "id": 5
     }
   ]
 }

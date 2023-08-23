@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchLoggedInUser, fetchLoggedInUserOrder } from "./userAPI";
+import { fetchLoggedInUser, fetchLoggedInUserOrder, updateUser } from "./userAPI";
 
 const initialState = {
-  userInfo: [],
+  userInfo: null,
   status: "idle",
   userOrders: []
 };
@@ -23,6 +23,14 @@ export const fetchLoggedInUserOrderAsync = createAsyncThunk(
   }
 );
 
+export const updateUserAsync=createAsyncThunk(
+  "order/updateUser",
+  async(userId)=>{
+    const response=await updateUser(userId);
+    return response.data;
+  }
+)
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -42,6 +50,15 @@ export const userSlice = createSlice({
       .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.userOrders = action.payload;
+      })
+      .addCase(updateUserAsync.pending, (state) => {
+        state.status = "pending";
+      })
+      .addCase(updateUserAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        // const index=state.userInfo.findIndex(user=>user.id===action.payload.id)
+        // state.userInfo[index] = action.payload;
+        state.userInfo=action.payload
       })
   },
 });
