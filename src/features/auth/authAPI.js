@@ -29,4 +29,11 @@ export function checkUser(loginInfo) {
   });
 }
 
+export function logoutUser(loginInfo){
+  return new Promise(async(resolve)=>{
+    
+    resolve({data:'success'});
+  })
+}
+
 

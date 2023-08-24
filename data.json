@@ -1060,15 +1060,6 @@
           "city": "Bangalore",
           "state": "Karnataka",
           "pincode": "5600"
-        },
-        {
-          "name": "Rohit Prasad Yadav",
-          "email": "rohit@gmail.com",
-          "phone": "7124875484",
-          "street": "12th Road",
-          "city": "Bangalore",
-          "state": "Karnataka",
-          "pincode": "787847"
         }
       ],
       "id": 1,
@@ -1100,28 +1091,7 @@
       "id": 2
     }
   ],
-  "cart": [
-    {
-      "title": "MacBook Pro",
-      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-      "price": 1749,
-      "discountPercentage": 11.02,
-      "rating": 4.57,
-      "stock": 83,
-      "brand": "Apple",
-      "category": "laptops",
-      "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
-      "images": [
-        "https://i.dummyjson.com/data/products/6/1.png",
-        "https://i.dummyjson.com/data/products/6/2.jpg",
-        "https://i.dummyjson.com/data/products/6/3.png",
-        "https://i.dummyjson.com/data/products/6/4.jpg"
-      ],
-      "quantity": 1,
-      "user": 1,
-      "id": 1
-    }
-  ],
+  "cart": [],
   "orders": [
     {
       "items": [
@@ -1453,6 +1423,89 @@
       },
       "status": "pending",
       "id": 5
+    },
+    {
+      "items": [
+        {
+          "title": "MacBook Pro",
+          "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+          "price": 1749,
+          "discountPercentage": 11.02,
+          "rating": 4.57,
+          "stock": 83,
+          "brand": "Apple",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+          "images": [
+            "https://i.dummyjson.com/data/products/6/1.png",
+            "https://i.dummyjson.com/data/products/6/2.jpg",
+            "https://i.dummyjson.com/data/products/6/3.png",
+            "https://i.dummyjson.com/data/products/6/4.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 1749,
+      "totalItems": 1,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Test1234",
+        "addresses": [
+          {
+            "name": "Bibek Prasad Yadav",
+            "email": "bibek@gmail.com",
+            "phone": "7022487804",
+            "street": "Mallathalli",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "pincode": "5600"
+          },
+          {
+            "name": "Rohit Prasad Yadav",
+            "email": "rohit@gmail.com",
+            "phone": "7124875484",
+            "street": "12th Road",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "pincode": "787847"
+          }
+        ],
+        "id": 1,
+        "address": [
+          {
+            "name": "Bibek Prasad Yadav",
+            "email": "bibek@gmail.com",
+            "phone": "7022487804",
+            "street": "Mallathalli",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "pincode": "5600"
+          },
+          {
+            "name": "Rohit Prasad Yadav",
+            "email": "rohit@gmail.com",
+            "phone": "5474641456",
+            "street": "Mallathalli",
+            "city": "banglore",
+            "state": "Karnataka",
+            "pincode": "560056"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Bibek Prasad Yadav",
+        "email": "bibek@gmail.com",
+        "phone": "7022487804",
+        "street": "Mallathalli",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "pincode": "5600"
+      },
+      "status": "pending",
+      "id": 6
     }
   ]
 }

@@ -25,4 +25,5 @@ export function updateUser(update){
       resolve({data});
     })
   }
+
   

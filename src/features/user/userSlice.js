@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchLoggedInUser, fetchLoggedInUserOrder, updateUser } from "./userAPI";
+import { fetchLoggedInUser, fetchLoggedInUserOrder, logoutUser, updateUser } from "./userAPI";
 
 const initialState = {
   userInfo: null,
@@ -31,6 +31,8 @@ export const updateUserAsync=createAsyncThunk(
   }
 )
 
+
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -60,6 +62,7 @@ export const userSlice = createSlice({
         // state.userInfo[index] = action.payload;
         state.userInfo=action.payload
       })
+      
   },
 });
 
