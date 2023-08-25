@@ -8,5 +8,5 @@ module.exports = {
       },
     },
   },
-  plugins: ['@tailwindcss/aspect-ratio','@tailwindcss/forms','@tailwindcss/forms'],
+  plugins: ['@tailwindcss/aspect-ratio','@tailwindcss/forms'],
 }
