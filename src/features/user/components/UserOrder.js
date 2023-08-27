@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from '../../cart/cartSlice'
 import { selectLoggedInUser } from '../../auth/authSlice';
 import { fetchLoggedInUserOrderAsync, selectUserInfo, selectUserOrder } from '../userSlice';
+import { discountedPrice } from '../../../app/constants';
 
 
 export default function UserOrder() {
@@ -55,7 +56,7 @@ export default function UserOrder() {
                         <h3>
                           <a href={item.href}>{item.title}</a>
                         </h3>
-                        <p className="ml-4">${item.price}</p>
+                        <p className="ml-4">${discountedPrice(item)}</p>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
                         {item.brand}

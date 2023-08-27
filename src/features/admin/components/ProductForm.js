@@ -62,11 +62,17 @@ export default function ProductForm() {
   }
   },[selectedProduct,setValue])
 
+  const handleDelete=()=>{
+    const product={...selectedProduct}
+    product.deleted=true
+    dispatch(updateProductAsync(product))
+  }
+
   return (
     <form noValidate onSubmit={handleSubmit((data)=>{
         const product={...data}
         product.images=[product.image1,product.image2,product.image3,product.thumbnail]
-        
+        product.rating=0
         delete product['image1']
         delete product['image2']
         delete product['image3']
@@ -74,10 +80,13 @@ export default function ProductForm() {
         product.stock=+product.stock
         product.discountPercentage=+product.discountPercentage
 
+        
+
         if(params.id){
           product.id=params.id
-          product.rating=product.selectedProduct||0
+          product.rating=selectedProduct.rating||0
           dispatch(updateProductAsync(product))
+          reset()
         }else{
           dispatch(addProductAsync(product))
         }
@@ -389,6 +398,13 @@ export default function ProductForm() {
           className="text-sm font-semibold leading-6 text-gray-900"
         >
           Cancel
+        </button>
+        <button
+          onClick={handleDelete}
+          type="button"
+          className="text-sm font-semibold leading-6 text-gray-900"
+        >
+          Delete
         </button>
         <button
           type="submit"

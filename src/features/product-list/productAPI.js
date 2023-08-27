@@ -1,6 +1,7 @@
 export function fetchAllProducts() {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/products");
+    // const response = await fetch("http://localhost:8080/products");
+    const response = await fetch("https://ecommerce-backend-data.onrender.com/products");
     const data = await response.json();
     resolve({ data });
   });
@@ -31,8 +32,11 @@ export function fetchProductsByFilters(filter, sort, pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
   return new Promise(async (resolve) => {
+    // const response = await fetch(
+    //   "http://localhost:8080/products?" + queryString
+    // );
     const response = await fetch(
-      "http://localhost:8080/products?" + queryString
+      "https://ecommerce-backend-data.onrender.com/products?" + queryString
     );
     const data = await response.json();
     //To get the total pages
@@ -45,7 +49,8 @@ export function fetchProductsByFilters(filter, sort, pagination) {
 
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/products/" + id);
+    // const response = await fetch("http://localhost:8080/products/" + id);
+    const response = await fetch("https://ecommerce-backend-data.onrender.com/products/" + id);
     const data = await response.json();
     resolve({ data });
   });
@@ -53,7 +58,8 @@ export function fetchProductById(id) {
 
 export function addProduct(productData) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/products", {
+    // const response = await fetch("http://localhost:8080/products", {
+      const response = await fetch("https://ecommerce-backend-data.onrender.com/products", {
       method: "POST",
       body: JSON.stringify(productData),
       headers: { "content-type": "application/json" },
@@ -65,7 +71,8 @@ export function addProduct(productData) {
 
 export function fetchBrands() {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/brands");
+    // const response = await fetch("http://localhost:8080/brands");
+    const response = await fetch("https://ecommerce-backend-data.onrender.com/brands");
     const data = await response.json();
     resolve({ data });
   });
@@ -73,7 +80,8 @@ export function fetchBrands() {
 
 export function fetchCategories() {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/categories");
+    // const response = await fetch("http://localhost:8080/categories");
+    const response = await fetch("https://ecommerce-backend-data.onrender.com/categories");
     const data = await response.json();
     resolve({ data });
   });
@@ -81,7 +89,8 @@ export function fetchCategories() {
 
 export function updateProduct(product){
   return new Promise(async(resolve)=>{
-    const response=await fetch("http://localhost:8080/products/"+product.id,{
+    // const response=await fetch("http://localhost:8080/products/"+product.id,{
+      const response=await fetch("https://ecommerce-backend-data.onrender.com/products/"+product.id,{
       method: "PATCH",
       body: JSON.stringify(product),
       headers: { "content-type": "application/json" }
