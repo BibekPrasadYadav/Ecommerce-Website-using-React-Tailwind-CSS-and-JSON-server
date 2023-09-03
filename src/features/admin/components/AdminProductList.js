@@ -291,6 +291,7 @@ function Pagination({ handlePage, page, setPage, totalItems }) {
 
             {Array.from({ length: totalPages }).map((el, index) => (
               <div
+              key={index}
                 onClick={(e) => handlePage(index + 1)}
                 aria-current="page"
                 className={`relative z-10 cursor-pointer inline-flex items-center ${

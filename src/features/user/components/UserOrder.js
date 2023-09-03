@@ -8,18 +8,18 @@ import { discountedPrice } from '../../../app/constants';
 
 export default function UserOrder() {
   const [open, setOpen] = useState(true);
-  const users=useSelector(selectUserInfo)
+  const userInfo=useSelector(selectUserInfo)
   const orders=useSelector(selectUserOrder)
   const dispatch=useDispatch();
   const [selectedAddress,setSelectedAddress]=useState(null);
   useEffect(()=>{
-    dispatch(fetchLoggedInUserOrderAsync(users?.id))
+    dispatch(fetchLoggedInUserOrderAsync(userInfo?.id))
   },[])
     
   const handleAddress=(e)=>{
     console.log(e.target.value)
-    setSelectedAddress(users.addresses[e.target.value])
-    console.log(users.addresses[e.target.value])
+    setSelectedAddress(userInfo.addresses[e.target.value])
+    console.log(userInfo.addresses[e.target.value])
   }
     
   
@@ -96,7 +96,7 @@ export default function UserOrder() {
           <p className="mt-0.5 text-sm text-gray-500">
             Shipping and taxes calculated at checkout.
           </p>
-          {orders.map((order)=>(
+          
           <ul role="list">
                   
 
@@ -132,7 +132,7 @@ export default function UserOrder() {
 
                 
                 </ul>
-          ))}
+          
         </div>
       </div>
       </div>

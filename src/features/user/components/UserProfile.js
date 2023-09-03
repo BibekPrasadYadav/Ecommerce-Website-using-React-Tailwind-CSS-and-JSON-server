@@ -23,7 +23,7 @@ export default function UserProfile() {
   const users = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
   const orders = useSelector(selectUserOrder);
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const [selectEditForm, setSelectEditForm] = useState(-1);
   const [selectAddForm, setSelectAddForm] = useState(false);
 
@@ -33,7 +33,7 @@ export default function UserProfile() {
 
   const handleEditForm = (index) => {
     setSelectEditForm(index);
-    const address = user.addresses[index];
+    const address = userInfo.addresses[index];
     setValue("name", address.name);
     setValue("email", address.email);
     setValue("phone", address.phone);
@@ -44,20 +44,20 @@ export default function UserProfile() {
   };
 
   const handleEdit = (addressData, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1, addressData);
     dispatch(updateUserAsync(newUser));
     setSelectEditForm(-1);
   };
   const handleRemove = (e, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser));
   };
 
 
   const handleAdd=(address)=>{
-    const newUser={...user,addresses:[...user.addresses,address]}
+    const newUser={...userInfo,addresses:[...userInfo.addresses,address]}
     dispatch(updateUserAsync(newUser));
     setSelectAddForm(false)
   }
@@ -69,10 +69,10 @@ export default function UserProfile() {
             Name: {users.name ? users.name : "New User"}
           </h1>
           <h3 className=" font-bold tracking-tight text-gray-900">
-            Email: {users.email ? users.email : "dummy@gmail.com"}
+            Email: {userInfo.email }
           </h3>
-          {user.role==="admin" && <h3 className=" font-bold tracking-tight text-gray-900">
-            Role: {users.role}
+          {userInfo.role==="admin" && <h3 className=" font-bold tracking-tight text-gray-900">
+            Role: {userInfo.role}
           </h3>}
         </div>
 
@@ -257,7 +257,7 @@ export default function UserProfile() {
                 </form>):null}
             <p className=" mt-0.5 text-2xl text-gray-500">Your Addresses:</p>
           </div>
-          {user.addresses.map((address, index) => (
+          {userInfo.addresses.map((address, index) => (
             <div>
                
                 
