@@ -4,7 +4,7 @@ import { fetchLoggedInUser, fetchLoggedInUserOrder, logoutUser, updateUser } fro
 const initialState = {
   userInfo: null,
   status: "idle",
-  userOrders: []
+  
 };
 
 export const fetchLoggedInUserAsync = createAsyncThunk(
@@ -51,7 +51,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.userOrders = action.payload;
+        state.userInfo.orders = action.payload;
       })
       .addCase(updateUserAsync.pending, (state) => {
         state.status = "pending";
@@ -66,6 +66,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const selectUserInfo = (state) => state.user.userInfo;
+export const selectUserInfo = (state) => state.user.userInfo.orders;
 export const selectUserOrder=(state)=>state.user.userOrders
 export default userSlice.reducer;
