@@ -41,11 +41,11 @@ export default function UserOrder() {
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
               {order.items.map((item) => (
-                <li key={item.id} className="flex py-6">
+                <li key={item.product.id} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
-                      src={item.thumbnail}
-                      alt={item.title}
+                      src={item.product.thumbnail}
+                      alt={item.product.title}
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -54,12 +54,12 @@ export default function UserOrder() {
                     <div>
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>
-                          <a href={item.href}>{item.title}</a>
+                          <a href={item.product.id}>{item.product.title}</a>
                         </h3>
-                        <p className="ml-4">${discountedPrice(item)}</p>
+                        <p className="ml-4">${discountedPrice(item.product)}</p>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
-                        {item.brand}
+                        {item.product.brand}
                       </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
@@ -96,8 +96,11 @@ export default function UserOrder() {
           <p className="mt-0.5 text-sm text-gray-500">
             Shipping and taxes calculated at checkout.
           </p>
+          {orders.map((order)=>(
           <ul role="list">
                   
+
+                 
                     <div
                       
                       className="flex justify-between gap-x-6 py-5  border-solid border-2 border-gray-200 p-5"
@@ -125,9 +128,11 @@ export default function UserOrder() {
                         </p>
                       </div>
                     </div>
+                 
+
                 
                 </ul>
-         
+          ))}
         </div>
       </div>
       </div>

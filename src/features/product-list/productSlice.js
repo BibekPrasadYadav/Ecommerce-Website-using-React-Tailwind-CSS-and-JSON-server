@@ -127,6 +127,7 @@ export const productSlice=createSlice({
             state.status='idle';
             const index=state.products.findIndex((product)=>product.id===action.payload.id)
             state.products[index]=action.payload;
+            state.selectProduct=action.payload;
         })
     }
 })
@@ -137,4 +138,5 @@ export const selectAllItems=(state)=>(state.product.totalItems)
 export const selectBrands=(state)=>(state.product.brands)
 export const selectCategories=(state)=>(state.product.categories)
 export const selectProduct=(state)=>(state.product.selectProduct)
+export const selectProductListStatus=(state)=>(state.product.status)
 export default productSlice.reducer;

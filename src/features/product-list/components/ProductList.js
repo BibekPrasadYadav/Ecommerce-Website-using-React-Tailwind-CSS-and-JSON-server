@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { StarIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ColorRing } from "react-loader-spinner";
+
 import {
   ChevronDownIcon,
   FunnelIcon,
@@ -22,6 +24,7 @@ import {
   selectCategories,
   fetchBrandsAsync,
   fetchCategoriesAsync,
+  selectProductListStatus,
 } from "../productSlice";
 
 import { ITEM_PER_PAGE, discountedPrice } from "../../../app/constants";
@@ -55,6 +58,7 @@ export default function ProductList() {
   const [page, setPage] = useState(1);
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
+  const status = useSelector(selectProductListStatus);
 
   const filters = [
     {
@@ -205,7 +209,10 @@ export default function ProductList() {
 
                 <div className="lg:col-span-3">
                   {/* Product grid */}
-                  <ProductGrid products={products}></ProductGrid>
+                  <ProductGrid
+                    products={products}
+                    status={status}
+                  ></ProductGrid>
                 </div>
               </div>
             </section>
@@ -224,12 +231,24 @@ export default function ProductList() {
   );
 }
 
-function ProductGrid({ products }) {
+function ProductGrid({ products, status }) {
   return (
     <div>
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            
+            {status === "loading" ? (<div className="flex justify-center">
+              <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+              />
+            </div>) : null}
             {products.map((product) => (
               <Link to={`/product-detail/${product.id}`}>
                 <div

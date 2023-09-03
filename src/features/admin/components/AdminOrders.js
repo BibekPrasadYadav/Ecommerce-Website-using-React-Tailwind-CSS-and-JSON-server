@@ -8,7 +8,12 @@ import {
   updateOrderAsync,
 } from "../../order/orderSlice";
 import { ITEM_PER_PAGE, discountedPrice } from "../../../app/constants";
-import { ArrowDownIcon, ArrowUpIcon, EyeIcon, PencilIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  EyeIcon,
+  PencilIcon,
+} from "@heroicons/react/24/solid";
 import Pagination from "../../common/Pagination";
 
 export default function AdminOrders() {
@@ -60,13 +65,12 @@ export default function AdminOrders() {
 
   const handlePage = (page) => {
     setPage(page);
-    
   };
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEM_PER_PAGE };
     dispatch(fetchAllOrdersAsync({ sort, pagination }));
-  }, [dispatch, page,sort]);
+  }, [dispatch, page, sort]);
   return (
     <>
       <div className="overflow-x-auto">
@@ -85,8 +89,14 @@ export default function AdminOrders() {
                         })
                       }
                     >
-                      <div className="flex items-center"> 
-                      Order# {' '} {sort._sort==="id" && (sort._order==='desc' ? (<ArrowDownIcon className="w-4 h-4"></ArrowDownIcon>):(<ArrowUpIcon className="w-4 h-4"></ArrowUpIcon>))}
+                      <div className="flex items-center">
+                        Order#{" "}
+                        {sort._sort === "id" &&
+                          (sort._order === "desc" ? (
+                            <ArrowDownIcon className="w-4 h-4"></ArrowDownIcon>
+                          ) : (
+                            <ArrowUpIcon className="w-4 h-4"></ArrowUpIcon>
+                          ))}
                       </div>
                     </th>
                     <th className="py-3 px-6 text-left">Items</th>
