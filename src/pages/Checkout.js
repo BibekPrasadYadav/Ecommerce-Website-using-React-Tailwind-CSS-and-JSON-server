@@ -54,6 +54,7 @@ export default function Checkout() {
   const [open, setOpen] = useState(true);
   const items = useSelector(selectItems);
   const user = useSelector(selectUserInfo);
+  console.log(user, "user123");
   const currentOrder = useSelector(selectCurrentOrder);
   const dispatch = useDispatch();
 
@@ -78,7 +79,7 @@ export default function Checkout() {
   };
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const deleteItem = (e, item) => {
@@ -91,7 +92,7 @@ export default function Checkout() {
         items,
         totalAmount,
         totalItems,
-        user:user.id,
+        user: user.id,
         paymentMethod,
         selectedAddress,
         status: "pending",
@@ -114,11 +115,11 @@ export default function Checkout() {
               className="bg-white px-5 py-5 mt-9"
               noValidate
               onSubmit={handleSubmit((data) => {
-                console.log(data);
+                console.log(data, "handleData");
                 dispatch(
                   updateUserAsync({
                     ...user,
-                    addresses: [...user.addresses, data],
+                    addresses: [...(user.addresses || []), data],
                   })
                 );
                 reset();
@@ -290,7 +291,7 @@ export default function Checkout() {
                     Choose from Existing Address
                   </p>
                   <ul role="list">
-                    {user.addresses.map((address, index) => (
+                    {user?.addresses?.map((address, index) => (
                       <li
                         key={index}
                         className="flex justify-between gap-x-6 py-5  border-solid border-2 border-gray-200 p-5"
@@ -387,7 +388,7 @@ export default function Checkout() {
 
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                    {items.map((item) => (
+                    {items?.map((item) => (
                       <li key={item.product.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                           <img
@@ -401,9 +402,13 @@ export default function Checkout() {
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>
-                                <a href={item.product.id}>{item.product.title}</a>
+                                <a href={item.product.id}>
+                                  {item.product.title}
+                                </a>
                               </h3>
-                              <p className="ml-4">${discountedPrice(item.product)}</p>
+                              <p className="ml-4">
+                                ${discountedPrice(item.product)}
+                              </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.product.brand}

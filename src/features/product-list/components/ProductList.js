@@ -74,18 +74,26 @@ export default function ProductList() {
   ];
 
   const handleFilters = (e, section, option) => {
-    console.log(e.target.checked);
+    setPage(1);
     const newFilter = { ...filter };
+    const sectionId = section.id;
+    const value = option.value;
+
     if (e.target.checked) {
-      if (newFilter[section.id]) newFilter[section.id].push(option.value);
-      else newFilter[section.id] = [option.value];
+      if (!newFilter[sectionId]) {
+        newFilter[sectionId] = [];
+      }
+      if (!newFilter[sectionId].includes(value)) {
+        newFilter[sectionId].push(value);
+      }
     } else {
-      const index = newFilter[section.id].findIndex(
-        (el) => el === option.value
-      );
-      newFilter[section.id].splice(index, 1);
+      if (newFilter[sectionId]) {
+        newFilter[sectionId] = newFilter[sectionId].filter(
+          (val) => val !== value
+        );
+      }
     }
-    console.log({ newFilter });
+
     setFilter(newFilter);
   };
 
@@ -125,7 +133,7 @@ export default function ProductList() {
           ></MobileFilter>
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+            <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-4">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">
                 All Products
               </h1>
@@ -236,19 +244,26 @@ function ProductGrid({ products, status }) {
     <div>
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            
-            {status === "loading" ? (<div className="flex justify-center">
-              <ColorRing
-                visible={true}
-                height="80"
-                width="80"
-                ariaLabel="blocks-loading"
-                wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
-                colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-              />
-            </div>) : null}
+          <div className=" grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">
+            {status === "loading" ? (
+              <div className="flex justify-center">
+                <ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  colors={[
+                    "#e15b64",
+                    "#f47e60",
+                    "#f8b26a",
+                    "#abbd81",
+                    "#849b87",
+                  ]}
+                />
+              </div>
+            ) : null}
             {products.map((product) => (
               <Link to={`/product-detail/${product.id}`}>
                 <div
@@ -265,14 +280,23 @@ function ProductGrid({ products, status }) {
                   <div className="mt-4 flex justify-between">
                     <div>
                       <h3 className="text-sm text-gray-700">
-                        <div href={product.thumbnail}>
+                        <div
+                          href={product.thumbnail}
+                          className="relative group"
+                        >
                           <span
                             aria-hidden="true"
                             className="absolute inset-0"
                           />
-                          {product.title}
+                          <span
+                            title={product.title}
+                            className="block truncate w-24"
+                          >
+                            {product.title}
+                          </span>
                         </div>
                       </h3>
+
                       <p className="mt-1 text-sm text-gray-500">
                         <StarIcon className="w-6 h-6 inline" />
                         <span className="align-bottom">{product.rating}</span>
@@ -297,7 +321,12 @@ function ProductGrid({ products, status }) {
   );
 }
 
-function MobileFilter({ mobileFiltersOpen, setMobileFiltersOpen, filters }) {
+function MobileFilter({
+  handleFilters,
+  mobileFiltersOpen,
+  setMobileFiltersOpen,
+  filters,
+}) {
   return (
     <div>
       <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -381,10 +410,14 @@ function MobileFilter({ mobileFiltersOpen, setMobileFiltersOpen, filters }) {
                                   <input
                                     id={`filter-mobile-${section.id}-${optionIdx}`}
                                     name={`${section.id}[]`}
-                                    defaultValue={option.value}
                                     type="checkbox"
-                                    defaultChecked={option.checked}
-                                    onChange={(e) => console.log(e)}
+                                    checked={
+                                      filters[section.id] &&
+                                      filters[section.id].includes(option.value)
+                                    }
+                                    onChange={(e) =>
+                                      handleFilters(e, section, option)
+                                    }
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label
@@ -444,9 +477,11 @@ function DesktopFilter({ handleFilters, filters }) {
                         <input
                           id={`filter-${section.id}-${optionIdx}`}
                           name={`${section.id}[]`}
-                          defaultValue={option.value}
                           type="checkbox"
-                          defaultChecked={option.checked}
+                          checked={
+                            filters[section.id] &&
+                            filters[section.id].includes(option.value)
+                          }
                           onChange={(e) => handleFilters(e, section, option)}
                           className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         />

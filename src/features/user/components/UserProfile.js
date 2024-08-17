@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedInUser } from "../../auth/authSlice";
 import {
   fetchLoggedInUserAsync,
-  fetchLoggedInUserOrderAsync,
-  selectUserInfo,
-  selectUserOrder,
   updateUserAsync,
 } from "../userSlice";
-import { fetchLoggedInUserOrder } from "../userAPI";
 import { useForm } from "react-hook-form";
+import { selectUserInfo } from "../userSlice";
 
 export default function UserProfile() {
   const {
@@ -20,16 +16,13 @@ export default function UserProfile() {
     setValue,
     formState: { errors },
   } = useForm();
-  const users = useSelector(selectLoggedInUser);
+  
   const dispatch = useDispatch();
-  const orders = useSelector(selectUserOrder);
   const userInfo = useSelector(selectUserInfo);
   const [selectEditForm, setSelectEditForm] = useState(-1);
   const [selectAddForm, setSelectAddForm] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchLoggedInUserAsync(users?.id));
-  }, []);
+  
 
   const handleEditForm = (index) => {
     setSelectEditForm(index);
@@ -66,14 +59,14 @@ export default function UserProfile() {
       <div className="w-[80%] mx-auto p-10 mt-8 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className=" border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-            Name: {users.name ? users.name : "New User"}
+            Name: {userInfo.name ? userInfo.name : "New User"}
           </h1>
           <h3 className=" font-bold tracking-tight text-gray-900">
-            Email: {userInfo.email }
+            Email: {userInfo?.email }
           </h3>
-          {userInfo.role==="admin" && <h3 className=" font-bold tracking-tight text-gray-900">
+          {userInfo.role==="admin" && (<h3 className=" font-bold tracking-tight text-gray-900">
             Role: {userInfo.role}
-          </h3>}
+          </h3>)}
         </div>
 
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
@@ -257,7 +250,7 @@ export default function UserProfile() {
                 </form>):null}
             <p className=" mt-0.5 text-2xl text-gray-500">Your Addresses:</p>
           </div>
-          {userInfo.addresses.map((address, index) => (
+          {userInfo.addresses?.map((address, index) => (
             <div>
                
                 
